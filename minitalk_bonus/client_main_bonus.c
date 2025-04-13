@@ -6,7 +6,7 @@
 /*   By: aessaber <aessaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 17:05:38 by aessaber          #+#    #+#             */
-/*   Updated: 2025/04/13 21:45:48 by aessaber         ###   ########.fr       */
+/*   Updated: 2025/04/13 22:24:04 by aessaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ static void	message_encrypt(int server_pid, char digit)
 		if (fail_check == -1)
 			(ft_putstr_fd("Failed to send signal\n", 1), exit(FAIL));
 		usleep(100);
+		usleep(50);
 		bits++;
 	}
 }
