@@ -25,7 +25,7 @@ CC      =   cc
 FLAGS   =   -Wall -Wextra -Werror
 RM      =   rm -f
 
-# Rules:
+# mandatory:
 all: $(NAME) $(CLIENT)
 
 $(NAME): $(S_OBJS)
@@ -49,6 +49,7 @@ $(CLIENT_B): $(C_OBJS_B)
 minitalk_bonus/%_bonus.o: minitalk_bonus/%_bonus.c $(HEADER_B)
 	$(CC) $(FLAGS) -c $< -o $@
 
+# Rules:
 clean:
 	$(RM) $(S_OBJS) $(C_OBJS) $(S_OBJS_B) $(C_OBJS_B)
 

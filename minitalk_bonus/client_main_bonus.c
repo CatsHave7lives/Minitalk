@@ -6,7 +6,7 @@
 /*   By: aessaber <aessaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 17:05:38 by aessaber          #+#    #+#             */
-/*   Updated: 2025/04/13 18:15:20 by aessaber         ###   ########.fr       */
+/*   Updated: 2025/04/13 19:30:42 by aessaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ static	void message_received(int sigusr)
 {
 	if (sigusr == SIGUSR1)
 	{
-		ft_putstr_fd("Message received!\n", 1);
+		ft_putstr_fd("Message sent!\n", 1);
 	}
 }
 
@@ -82,7 +82,7 @@ int	main(int ac, char **av)
 		message_encrypt(server_pid, av[2][col]);
 		col++;
 	}
-	message_encrypt(server_pid, '\0');
 	signal(SIGUSR1, message_received);
+	message_encrypt(server_pid, '\0');
 	return (0);
 }
