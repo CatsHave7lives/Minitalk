@@ -6,7 +6,7 @@
 /*   By: aessaber <aessaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/12 12:04:45 by aessaber          #+#    #+#             */
-/*   Updated: 2025/04/13 19:08:20 by aessaber         ###   ########.fr       */
+/*   Updated: 2025/04/13 21:44:10 by aessaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ static void	print_bytes(unsigned char *bytes, int count)
 
 static void	utf_handler(int client_pid)
 {
+	int	bytes_cap;
+
 	if (g_server.digit <= 0b01111111)
 	{
 		if (g_server.digit == 0b00000000)
@@ -43,15 +45,16 @@ static void	utf_handler(int client_pid)
 		ft_bzero(g_server.bytes, 4);
 		return ;
 	}
-	g_server.bytes[g_server.count] = g_server.digit;
-	g_server.count++;
-	if ((g_server.bytes[0] & 0b11100000) == 0b11000000
-		|| (g_server.bytes[0] & 0b11110000) == 0b11100000
-		|| (g_server.bytes[0] & 0b11111000) == 0b11110000)
-	{
+	g_server.bytes[g_server.count++] = g_server.digit;
+	bytes_cap = 1;
+	if ((g_server.bytes[0] & 0b11100000) == 0b11000000)
+		bytes_cap = 2;
+	else if ((g_server.bytes[0] & 0b11110000) == 0b11100000)
+		bytes_cap = 3;
+	else if ((g_server.bytes[0] & 0b11111000) == 0b11110000)
+		bytes_cap = 4;
+	if (g_server.count >= bytes_cap)
 		print_bytes(g_server.bytes, g_server.count);
-		return ;
-	}
 	g_server.digit = 0;
 	g_server.bits = 0;
 }
@@ -74,19 +77,10 @@ static void	message_decrypt(int sigusr, siginfo_t *client_info, void *n)
 		utf_handler(client_info->si_pid);
 }
 
-static void	print_server_pid(void)
-{
-	int	server_pid;
-
-	server_pid = getpid();
-	ft_putstr_fd("The Server is on!\nServer PID: [ ", 1);
-	ft_putnbr_fd(server_pid, 1);
-	ft_putstr_fd(" ]\n", 1);
-}
-
 int	main(int ac, char **av)
 {
 	struct sigaction	signal_action;
+	int					server_pid;
 
 	(void)av;
 	if (ac != 1)
@@ -99,7 +93,10 @@ int	main(int ac, char **av)
 	if (sigaction(SIGUSR1, &signal_action, NULL) == -1
 		|| sigaction(SIGUSR2, &signal_action, NULL) == -1)
 		return (ft_putstr_fd("Failed to register signal handler\n", 1), FAIL);
-	print_server_pid();
+	server_pid = getpid();
+	ft_putstr_fd("The Server is on!\nServer PID: [ ", 1);
+	ft_putnbr_fd(server_pid, 1);
+	ft_putstr_fd(" ]\n", 1);
 	while (1)
 		pause();
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: aessaber <aessaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 16:36:00 by aessaber          #+#    #+#             */
-/*   Updated: 2025/04/13 19:00:13 by aessaber         ###   ########.fr       */
+/*   Updated: 2025/04/13 21:16:20 by aessaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ typedef struct s_server
 	unsigned char	digit;
 	int				bits;
 }	t_server;
-
 
 int		ft_isdigit(int c);
 int		ft_atoi(const char *str);
