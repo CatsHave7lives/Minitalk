@@ -12,11 +12,11 @@ C_OBJS      =   $(C_FILES:.c=.o)
 # Files_bonus:
 HEADER_B    =   minitalk_bonus/minitalk_bonus.h
 
-SERVER_B    =   server
+SERVER_B    =   server_bonus
 S_FILES_B   =   minitalk_bonus/ft_utils_bonus.c minitalk_bonus/server_main_bonus.c
 S_OBJS_B    =   $(S_FILES_B:.c=.o)
 
-CLIENT_B    =   client
+CLIENT_B    =   client_bonus
 C_FILES_B   =   minitalk_bonus/ft_utils_bonus.c minitalk_bonus/ft_atoi_bonus.c minitalk_bonus/client_main_bonus.c
 C_OBJS_B    =   $(C_FILES_B:.c=.o)
 
@@ -34,9 +34,10 @@ $(NAME): $(S_OBJS)
 $(CLIENT): $(C_OBJS)
 	$(CC) $(FLAGS) $^ -o $@
 
-%.o: %.c $(HEADER)
+minitalk/%.o: minitalk/%.c $(HEADER)
 	$(CC) $(FLAGS) -c $< -o $@
 
+# Bonus:
 bonus: $(SERVER_B) $(CLIENT_B)
 
 $(SERVER_B): $(S_OBJS_B)
@@ -44,6 +45,9 @@ $(SERVER_B): $(S_OBJS_B)
 
 $(CLIENT_B): $(C_OBJS_B)
 	$(CC) $(FLAGS) $^ -o $@
+
+minitalk_bonus/%_bonus.o: minitalk_bonus/%_bonus.c $(HEADER_B)
+	$(CC) $(FLAGS) -c $< -o $@
 
 clean:
 	$(RM) $(S_OBJS) $(C_OBJS) $(S_OBJS_B) $(C_OBJS_B)

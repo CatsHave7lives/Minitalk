@@ -6,20 +6,20 @@
 /*   By: aessaber <aessaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 19:46:18 by aessaber          #+#    #+#             */
-/*   Updated: 2025/04/13 18:35:04 by aessaber         ###   ########.fr       */
+/*   Updated: 2025/04/13 18:59:30 by aessaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk_bonus.h"
+#include "minitalk.h"
 
-void	ft_putchar_fd(unsigned char c, int fd)
+void	ft_putchar_fd(char c, int fd)
 {
 	if (fd < 0)
 		return ;
 	write(fd, &c, 1);
 }
 
-void	ft_putstr_fd(unsigned char *s, int fd)
+void	ft_putstr_fd(char *s, int fd)
 {
 	size_t	i;
 
