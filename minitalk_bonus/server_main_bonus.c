@@ -6,7 +6,7 @@
 /*   By: aessaber <aessaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/12 12:04:45 by aessaber          #+#    #+#             */
-/*   Updated: 2025/04/13 17:57:59 by aessaber         ###   ########.fr       */
+/*   Updated: 2025/04/13 19:08:20 by aessaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,18 @@ static void	utf_handler(int client_pid)
 			ft_putchar_fd(g_server.digit, 1);
 		g_server.digit = 0;
 		g_server.bits = 0;
-		return (ft_bzero(g_server.bytes, 4));
+		ft_bzero(g_server.bytes, 4);
+		return ;
 	}
 	g_server.bytes[g_server.count] = g_server.digit;
 	g_server.count++;
 	if ((g_server.bytes[0] & 0b11100000) == 0b11000000
 		|| (g_server.bytes[0] & 0b11110000) == 0b11100000
 		|| (g_server.bytes[0] & 0b11111000) == 0b11110000)
-		return (print_bytes(g_server.bytes, g_server.count));
+	{
+		print_bytes(g_server.bytes, g_server.count);
+		return ;
+	}
 	g_server.digit = 0;
 	g_server.bits = 0;
 }
