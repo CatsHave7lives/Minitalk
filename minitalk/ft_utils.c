@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd_bonus.c                               :+:      :+:    :+:   */
+/*   ft_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aessaber <aessaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 19:46:18 by aessaber          #+#    #+#             */
-/*   Updated: 2025/04/13 17:46:29 by aessaber         ###   ########.fr       */
+/*   Updated: 2025/04/13 18:35:04 by aessaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,19 +49,4 @@ void	ft_putnbr_fd(int n, int fd)
 	}
 	else
 		ft_putchar_fd(n + '0', fd);
-}
-
-void	*ft_bzero(void *b, size_t len)
-{
-	unsigned char	*str_b;
-	size_t			i;
-
-	str_b = (unsigned char *)b;
-	i = 0;
-	while (len--)
-	{
-		str_b[i] = 0;
-		i++;
-	}
-	return (b);
 }

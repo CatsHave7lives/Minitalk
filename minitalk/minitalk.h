@@ -6,7 +6,7 @@
 /*   By: aessaber <aessaber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 16:36:00 by aessaber          #+#    #+#             */
-/*   Updated: 2025/04/12 17:12:45 by aessaber         ###   ########.fr       */
+/*   Updated: 2025/04/13 18:38:08 by aessaber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,13 @@
 # include <stdlib.h>
 
 # define FAIL 1
+
+typedef struct s_server
+{
+	pid_t			client_pid;
+	unsigned char	digit;
+	int				bits;
+}	t_server;
 
 int		ft_isdigit(int c);
 int		ft_atoi(const char *str);
